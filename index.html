@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اليوم الوطني السعودي</title>
+<style>
+  :root{
+    --bg:#F7F4E9;
+    --surface:#FFFFFF;
+    --surface-2:#F0ECDC;
+    --ink:#122019;
+    --ink-soft:#4E6155;
+    --ink-faint:#83917F;
+    --green-900:#07301F;
+    --green-800:#0B4A2F;
+    --green-700:#0F6B3E;
+    --green-600:#137A46;
+    --green-100:#DEEBE0;
+    --gold:#BE9A3F;
+    --gold-soft:#F1E4BF;
+    --border:#DED6BC;
+    --danger:#A23C2E;
+    --danger-soft:#F7DEDA;
+    --shadow: 0 1px 2px rgba(7,48,31,.06), 0 10px 26px rgba(7,48,31,.09);
+    --radius-lg: 22px;
+    --radius-md: 15px;
+    --radius-sm: 11px;
+    --brand-1:#0A2317;
+    --brand-2:#0E3524;
+    --brand-3:#123F2C;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#081712;
+      --surface:#0E211A;
+      --surface-2:#122A20;
+      --ink:#EAF4EC;
+      --ink-soft:#A9C7B5;
+      --ink-faint:#79987F;
+      --green-900:#CFEDD9;
+      --green-800:#9FDCB8;
+      --green-700:#4FBD82;
+      --green-600:#3FA373;
+      --green-100:#153A28;
+      --gold:#E4C066;
+      --gold-soft:#3A2F16;
+      --border:#1E3B2C;
+      --danger:#E38A78;
+      --danger-soft:#3A1B16;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#081712; --surface:#0E211A; --surface-2:#122A20;
+    --ink:#EAF4EC; --ink-soft:#A9C7B5; --ink-faint:#79987F;
+    --green-900:#CFEDD9; --green-800:#9FDCB8; --green-700:#4FBD82; --green-600:#3FA373;
+    --green-100:#153A28; --gold:#E4C066; --gold-soft:#3A2F16; --border:#1E3B2C;
+    --danger:#E38A78; --danger-soft:#3A1B16;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    direction:rtl;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"IBM Plex Sans Arabic","Tahoma",sans-serif;
+  }
+  h1,h2,h3,.display{font-family:"Cairo","Tahoma",sans-serif; text-wrap:balance;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  [hidden]{display:none!important;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px;}
+
+  header.top{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+    background:linear-gradient(180deg,var(--brand-1), var(--brand-2));
+    padding-top:env(safe-area-inset-top,0px);
+    box-shadow:var(--shadow);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:12px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand .mark{
+    width:38px;height:38px;border-radius:11px;background:var(--gold);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .brand .mark svg{width:20px;height:20px;color:var(--green-900);}
+  .brand span{font-family:"Cairo",sans-serif;font-weight:800;color:#fff;font-size:15.5px;}
+
+  nav.tabs{display:flex;gap:4px;background:rgba(255,255,255,.08);padding:4px;border-radius:999px;flex-wrap:wrap;}
+  nav.tabs button{
+    border:none;background:transparent;color:#DCEADD;
+    padding:9px 16px;border-radius:999px;font-size:13.5px;font-weight:700;
+    cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;
+  }
+  nav.tabs button.active{background:var(--gold);color:var(--green-900);}
+  nav.tabs .badge{
+    background:var(--danger);color:#fff;font-size:10.5px;font-weight:800;
+    min-width:17px;height:17px;padding:0 4px;border-radius:999px;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+
+  main{padding-bottom:80px;}
+  .page{display:none;}
+  .page.active{display:block;}
+
+  .hero{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(190,154,63,.10), transparent 55%),
+      linear-gradient(160deg,var(--brand-1) 0%, var(--brand-2) 60%, var(--brand-3) 100%);
+    color:#fff;padding:44px 20px 40px;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;opacity:.10;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M60 18c3 10 3 16 0 24-3-8-3-14 0-24zM60 42c8 6 12 11 14 20-9-3-13-8-14-20zm0 0c-8 6-12 11-14 20 9-3 13-8 14-20z' fill='%23fff'/%3E%3C/svg%3E");
+    background-size:120px 120px;
+  }
+  .hero-inner{position:relative;max-width:1180px;margin:0 auto;text-align:center;}
+  .hero .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+    padding:6px 16px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .hero h1{font-size:clamp(28px,6vw,46px);font-weight:800;margin:0 0 10px;}
+  .hero p.tag{font-size:15px;color:#DCEADD;max-width:520px;margin:0 auto 22px;}
+
+  .countdown{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+  .countdown .box{
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+    border-radius:var(--radius-sm);padding:12px 16px;min-width:74px;
+  }
+  .countdown .box b{display:block;font-family:"Cairo",sans-serif;font-size:24px;font-variant-numeric:tabular-nums;color:var(--gold-soft);}
+  .countdown .box span{font-size:11px;color:#CFE3D5;}
+
+  .section-head{display:flex;align-items:center;justify-content:space-between;margin:34px 0 14px;}
+  .section-head h2{font-size:19px;margin:0;}
+  .section-head p{font-size:12.5px;color:var(--ink-faint);margin:2px 0 0;}
+
+  .carousel{
+    display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 12% 18px;margin:0 -20px;
+    scrollbar-width:none;
+  }
+  .carousel::-webkit-scrollbar{display:none;}
+  .ann-card{
+    flex:0 0 76%;scroll-snap-align:center;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+    overflow:hidden;box-shadow:var(--shadow);
+  }
+  @media (min-width:640px){ .ann-card{flex-basis:56%;} .carousel{padding-inline:22%;} }
+  @media (min-width:900px){ .ann-card{flex-basis:40%;} .carousel{padding-inline:30%;} }
+  .ann-top{
+    height:8px;background:linear-gradient(90deg,var(--green-700),var(--gold));
+  }
+  .ann-img{width:100%;height:140px;object-fit:cover;display:block;}
+  .ann-body{padding:20px;}
+  .ann-body .cat{
+    display:inline-block;font-size:11px;font-weight:800;color:var(--green-700);
+    background:var(--green-100);padding:4px 10px;border-radius:999px;margin-bottom:10px;
+  }
+  .ann-body h3{font-size:16.5px;margin:0 0 8px;}
+  .ann-body p{font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:0;}
+  .ann-dots{display:flex;justify-content:center;gap:6px;margin-top:-8px;}
+  .ann-dots span{width:6px;height:6px;border-radius:50%;background:var(--border);}
+  .ann-dots span.on{background:var(--green-700);width:16px;border-radius:4px;}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:26px 0;}
+  .fact{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);
+    padding:16px;text-align:center;
+  }
+  .fact b{display:block;font-family:"Cairo",sans-serif;font-size:22px;color:var(--green-700);}
+  .fact span{font-size:12px;color:var(--ink-faint);}
+
+  .filters{display:flex;gap:8px;overflow-x:auto;padding:16px 0 4px;scrollbar-width:none;}
+  .filters::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:0 0 auto;padding:8px 16px;border-radius:999px;border:1px solid var(--border);
+    background:var(--surface);color:var(--ink-soft);font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;
+  }
+  .chip[aria-pressed="true"]{background:var(--green-700);border-color:var(--green-700);color:#fff;}
+  .chip .n{opacity:.75;font-weight:500;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:16px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);}
+  .card.featured{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-soft), var(--shadow);}
+  .media{position:relative;width:100%;aspect-ratio:16/10;background:var(--green-100);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .media img{width:100%;height:100%;object-fit:cover;display:block;}
+  .media video{width:100%;height:100%;object-fit:cover;display:block;}
+  .media iframe{width:100%;height:100%;border:0;display:block;}
+  .media .fallback{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--green-700);padding:16px;text-align:center;}
+  .media .fallback svg{width:32px;height:32px;}
+  .media .fallback a{font-size:12.5px;font-weight:700;text-decoration:underline;}
+  .badge{position:absolute;top:10px;right:10px;background:rgba(7,48,31,.82);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;}
+  .star-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--green-900);font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:4px;}
+  .star-badge svg{width:11px;height:11px;}
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-title{font-size:15.5px;font-weight:800;font-family:"Cairo",sans-serif;line-height:1.4;}
+  .card-desc{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+  .card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px dashed var(--border);font-size:12px;color:var(--ink-faint);}
+  .student{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--green-700);}
+  .student .av{width:24px;height:24px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:"Cairo",sans-serif;flex-shrink:0;}
+
+  .empty{grid-column:1/-1;text-align:center;padding:56px 20px;color:var(--ink-faint);}
+  .empty svg{width:46px;height:46px;color:var(--green-600);margin-bottom:10px;}
+  .empty h3{color:var(--ink-soft);font-size:15.5px;margin:0 0 4px;}
+
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:16px 0 30px;}
+  .team-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;text-align:center;}
+  .team-card .av{
+    width:52px;height:52px;border-radius:50%;margin:0 auto 10px;
+    background:var(--green-100);color:var(--green-700);
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Cairo",sans-serif;font-weight:800;font-size:19px;
+  }
+  .team-card .name{font-size:14px;font-weight:800;}
+  .team-card .role{font-size:12px;color:var(--ink-faint);margin-top:2px;}
+
+  .fab{
+    position:fixed;left:20px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:30;
+    display:flex;align-items:center;gap:9px;background:var(--gold);color:var(--green-900);border:none;
+    padding:14px 20px;border-radius:999px;font-weight:800;font-size:14.5px;box-shadow:0 10px 24px rgba(190,154,63,.4);cursor:pointer;
+  }
+  .fab svg{width:19px;height:19px;}
+
+  .overlay{position:fixed;inset:0;background:rgba(6,20,14,.55);display:flex;align-items:flex-end;justify-content:center;z-index:60;backdrop-filter:blur(2px);}
+  @media (min-width:640px){ .overlay{align-items:center;} }
+  .sheet{position:relative;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;background:var(--surface);border-radius:22px 22px 0 0;padding:22px 22px calc(22px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px rgba(0,0,0,.25);}
+  @media (min-width:640px){ .sheet{border-radius:22px;} }
+  .sheet h2{font-size:19px;margin:0 0 3px;}
+  .sheet .sub{font-size:12.5px;color:var(--ink-faint);margin:0 0 18px;}
+  .close-x{position:absolute;top:14px;left:14px;width:30px;height:30px;border-radius:50%;background:var(--surface-2);border:none;color:var(--ink-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);margin-bottom:6px;}
+  .field input,.field select,.field textarea{width:100%;border:1px solid var(--border);background:var(--bg);color:var(--ink);border-radius:var(--radius-sm);padding:11px 13px;font-size:14px;font-family:inherit;}
+  .field textarea{resize:vertical;min-height:64px;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--green-600);outline-offset:1px;}
+  .field .hint{font-size:11.5px;color:var(--ink-faint);margin-top:5px;}
+  .field input[type="file"]{padding:9px 10px;cursor:pointer;}
+  #filePreview{margin-top:10px;}
+  #filePreview img, #filePreview video{width:100%;max-height:220px;object-fit:cover;border-radius:var(--radius-sm);border:1px solid var(--border);display:block;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:420px){ .row2{grid-template-columns:1fr;} }
+  .catlist{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+  .catpick{padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--bg);font-size:12.5px;color:var(--ink-soft);cursor:pointer;}
+  .actions{display:flex;gap:10px;margin-top:6px;}
+  .btn{padding:13px;border-radius:var(--radius-sm);border:none;font-weight:800;font-size:14.5px;cursor:pointer;}
+  .btn.block{width:100%;}
+  .btn.primary{background:var(--green-700);color:#fff;}
+  .btn.primary:disabled{opacity:.55;}
+  .btn.ghost{background:var(--surface-2);color:var(--ink-soft);}
+  .btn.gold{background:var(--gold);color:var(--green-900);}
+  .btn.danger{background:var(--danger-soft);color:var(--danger);}
+  .btn.sm{padding:8px 14px;font-size:12.5px;border-radius:999px;}
+  .msg{font-size:12.5px;border-radius:var(--radius-sm);padding:9px 12px;margin-bottom:12px;}
+  .msg.err{background:var(--danger-soft);color:var(--danger);}
+  .msg.ok{background:var(--green-100);color:var(--green-700);}
+
+  .gate{text-align:center;padding:50px 20px;color:var(--ink-faint);}
+  .gate svg{width:44px;height:44px;color:var(--green-600);margin-bottom:12px;}
+  .gate .field{text-align:right;max-width:320px;margin-inline:auto;}
+  .subtabs{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap;}
+  .subtab{padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-size:13px;font-weight:700;color:var(--ink-soft);cursor:pointer;}
+  .subtab.active{background:var(--green-700);border-color:var(--green-700);color:#fff;}
+  .subpage{display:none;}
+  .subpage.active{display:block;}
+
+  .review-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin-bottom:12px;}
+  .review-item .rh{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .review-item h4{font-size:14.5px;margin:0;}
+  .review-item .meta{font-size:12px;color:var(--ink-faint);}
+  .review-item p{font-size:13px;color:var(--ink-soft);margin:0 0 10px;line-height:1.6;}
+  .review-actions{display:flex;gap:8px;margin-top:10px;}
+
+  .manage-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:10px;flex-wrap:wrap;}
+  .manage-row .title{font-size:13.5px;font-weight:700;}
+  .manage-row .sub{font-size:11.5px;color:var(--ink-faint);}
+
+  .addbox{background:var(--surface);border:1px dashed var(--border);border-radius:var(--radius-md);padding:16px;margin-bottom:20px;}
+
+  .topbar-admin{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M12 3c-4 3-4 7 0 10M12 3c4 3 4 7 0 10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>اليوم الوطني السعودي</span>
+    </div>
+    <nav class="tabs" id="navTabs">
+      <button data-page="home" class="active">الرئيسية</button>
+      <button data-page="works">أعمال الطلاب</button>
+      <button data-page="best">الأفضل</button>
+      <button data-page="admin" id="adminTabBtn">لوحة المراجعة <span class="badge" id="pendingBadge" hidden>0</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ================= HOME ================= -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">🇸🇦 احتفالاً بالوحدة والفخر</span>
+        <h1>اليوم الوطني السعودي</h1>
+        <p class="tag">نحتفل معاً بذكرى توحيد المملكة العربية السعودية، ونشارك إبداعات طلابنا احتفاءً بهذه المناسبة الغالية</p>
+        <div class="countdown" id="countdown">
+          <div class="box"><b id="cdDays">--</b><span>يوم</span></div>
+          <div class="box"><b id="cdHours">--</b><span>ساعة</span></div>
+          <div class="box"><b id="cdMins">--</b><span>دقيقة</span></div>
+          <div class="box"><b id="cdSecs">--</b><span>ثانية</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>إعلانات الفعالية</h2>
+          <p>مرر يمينًا ويسارًا للاطلاع على جميع الإعلانات</p>
+        </div>
+      </div>
+      <div class="carousel" id="annCarousel"></div>
+      <div class="ann-dots" id="annDots"></div>
+
+      <div class="facts">
+        <div class="fact"><b>٢٣</b><span>سبتمبر ذكرى التوحيد</span></div>
+        <div class="fact"><b id="factWorks">٠</b><span>عمل منشور للطلاب</span></div>
+        <div class="fact"><b id="factCats">٠</b><span>تصنيف مختلف</span></div>
+        <div class="fact"><b id="factBest">٠</b><span>عمل مميّز</span></div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>فريق الإشراف</h2>
+          <p>القائمون على مراجعة أعمال الطلاب واعتمادها</p>
+        </div>
+      </div>
+      <div class="team-grid" id="teamGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= WORKS ================= -->
+  <section class="page" id="page-works">
+    <div class="wrap">
+      <div class="section-head" style="margin-top:26px;">
+        <div>
+          <h2>أعمال الطلاب</h2>
+          <p>مشاركات معتمدة من فريق الإشراف احتفاءً باليوم الوطني</p>
+        </div>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= BEST ================= -->
+  <section class="page" id="page-best">
+    <div class="wrap">
+      <div class="section-head" style="margin-top:26px;">
+        <div>
+          <h2>الأعمال الأفضل</h2>
+          <p>اختيار فريق الإشراف لأبرز إبداعات الطلاب</p>
+        </div>
+      </div>
+      <div class="grid" id="bestGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= ADMIN ================= -->
+  <section class="page" id="page-admin">
+    <div class="wrap">
+      <div id="adminGate" class="gate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+        <h3>هذه اللوحة مخصصة للمشرفين</h3>
+        <p>سجّل دخولك بحساب المشرف للوصول إلى لوحة المراجعة</p>
+        <div id="adminLoginMsg"></div>
+        <div class="field"><label for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" type="email" autocomplete="username"></div>
+        <div class="field"><label for="adminPass">كلمة المرور</label><input id="adminPass" type="password" autocomplete="current-password"></div>
+        <button class="btn primary" id="adminLoginBtn" style="max-width:320px;width:100%;margin:4px auto 0;display:block;">دخول</button>
+      </div>
+
+      <div id="adminArea" hidden>
+        <div class="section-head topbar-admin" style="margin-top:26px;">
+          <div><h2>لوحة المراجعة</h2><p>مراجعة الأعمال، اختيار الأفضل، وإدارة الإعلانات</p></div>
+          <button class="btn ghost sm" id="adminLogoutBtn">تسجيل خروج المشرف</button>
+        </div>
+
+        <div class="subtabs">
+          <button class="subtab active" data-sub="pending">قيد المراجعة <span id="subPendingN">(0)</span></button>
+          <button class="subtab" data-sub="curate">تمييز الأعمال</button>
+          <button class="subtab" data-sub="ann">الإعلانات</button>
+          <button class="subtab" data-sub="team">فريق الإشراف</button>
+        </div>
+
+        <div class="subpage active" id="sub-pending"></div>
+
+        <div class="subpage" id="sub-curate">
+          <div class="filters" id="curateFilters"></div>
+          <div id="curateList"></div>
+        </div>
+
+        <div class="subpage" id="sub-ann">
+          <div class="addbox">
+            <h3 style="font-size:14.5px;margin:0 0 12px;">إضافة إعلان جديد</h3>
+            <div class="field"><label for="aTitle">العنوان</label><input id="aTitle" maxlength="60" placeholder="مثال: فعالية العرض الوطني"></div>
+            <div class="field"><label for="aBody">التفاصيل</label><textarea id="aBody" maxlength="220" placeholder="وصف مختصر للإعلان"></textarea></div>
+            <div class="field"><label for="aCat">تصنيف الإعلان</label><input id="aCat" maxlength="24" placeholder="مثال: فعالية، تنبيه، مسابقة"></div>
+            <div class="field">
+              <label for="aImage">صورة الإعلان (اختياري)</label>
+              <input id="aImage" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+              <div id="aImagePreview"></div>
+            </div>
+            <div id="annAddMsg"></div>
+            <button class="btn primary block" id="annAddBtn">نشر الإعلان</button>
+          </div>
+          <div id="annManageList"></div>
+        </div>
+
+        <div class="subpage" id="sub-team">
+          <div class="addbox">
+            <h3 style="font-size:14.5px;margin:0 0 4px;">إضافة عضو لفريق الإشراف</h3>
+            <p style="font-size:12px;color:var(--ink-faint);margin:0 0 12px;">هذه القائمة للتعريف فقط وتظهر في الصفحة الرئيسية.</p>
+            <div class="row2">
+              <div class="field"><label for="tName">الاسم</label><input id="tName" maxlength="50" placeholder="مثال: أ. نورة القحطاني"></div>
+              <div class="field"><label for="tRole">الدور</label><input id="tRole" maxlength="40" placeholder="مثال: مشرفة النشاط الطلابي"></div>
+            </div>
+            <div class="field"><label for="tPhone">رقم التواصل (اختياري)</label><input id="tPhone" maxlength="20" placeholder="مثال: 0561314989"></div>
+            <div id="teamAddMsg"></div>
+            <button class="btn primary block" id="teamAddBtn">إضافة للفريق</button>
+          </div>
+          <div id="teamManageList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<button class="fab" id="openBtn" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+  شارك عملك
+</button>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <button class="close-x" id="closeBtn" type="button" aria-label="إغلاق">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </button>
+    <h2 id="sheetTitle">مشاركة عمل جديد</h2>
+    <p class="sub">سجّل اسمك وبيانات عملك، وسيراجعه فريق الإشراف قبل نشره</p>
+    <div id="formMsg"></div>
+    <form id="postForm">
+      <div class="row2">
+        <div class="field"><label for="fName">اسمك</label><input id="fName" type="text" maxlength="60" placeholder="مثال: سارة العتيبي" required></div>
+        <div class="field"><label for="fTitle">عنوان العمل</label><input id="fTitle" type="text" maxlength="80" placeholder="مثال: لوحة العَلم" required></div>
+      </div>
+      <div class="field"><label for="fDesc">وصف العمل</label><textarea id="fDesc" maxlength="400" placeholder="اكتب نبذة قصيرة عن عملك ومناسبته الوطنية" required></textarea></div>
+      <div class="field">
+        <label for="fFile">ملف العمل (صورة أو فيديو)</label>
+        <input id="fFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm">
+        <div class="hint">أرفق الملف مباشرة من جهازك — صورة (jpg, png, webp, gif) أو فيديو (mp4, webm)، بحجم أقصى 20 ميجابايت</div>
+        <div id="filePreview"></div>
+      </div>
+      <div class="field">
+        <label>التصنيف</label>
+        <input id="fCat" type="text" maxlength="30" placeholder="مثال: رسم، فيديو توثيقي، عرض تقديمي…" required>
+        <div class="catlist" id="catSuggest"></div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn ghost" id="cancelBtn" style="flex:0 0 auto;padding:13px 18px;">إلغاء</button>
+        <button type="submit" class="btn primary" id="submitBtn" style="flex:1;">إرسال للمراجعة</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Firebase (compat SDK) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+<script>
+/* =====================================================================
+   ضع بيانات مشروعك في Firebase هنا (Project settings → General → Your apps → SDK setup and configuration)
+   راجع دليل الإعداد المرفق للحصول على هذه القيم خطوة بخطوة.
+   ===================================================================== */
+var firebaseConfig = {
+  apiKey: "AIzaSyD7ktz4TUSGO3uzi1GGR2xO-zLzYnPuEKE",
+  authDomain: "saudi-ba76d.firebaseapp.com",
+  projectId: "saudi-ba76d",
+  storageBucket: "saudi-ba76d.firebasestorage.app",
+  messagingSenderId: "311391537590",
+  appId: "1:311391537590:web:1c3c818d42b6884bf15917"
+};
+
+/* =====================================================================
+   رفع الملفات (صور/فيديو) يتم عبر Cloudinary المجانية بدل Firebase Storage
+   (لأن Firebase Storage صار يتطلب ترقية لخطة مدفوعة Blaze).
+   ضع بيانات حساب Cloudinary هنا — راجع دليل الإعداد.
+   ===================================================================== */
+var cloudinaryConfig = {
+  cloudName: "pcgqcgqo",
+  uploadPreset: "ml_default"
+};
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- fixed base supervisor (always shown, survives redeploys) ---------- */
+  var BASE_TEAM = [
+    { id:"base-iyad", name:"إياد القرني", role:"مشرف عام", phone:"0561314989", base:true }
+  ];
+
+  firebase.initializeApp(firebaseConfig);
+  var auth = firebase.auth();
+  var db = firebase.firestore();
+
+  var isAdmin = false;
+  var posts = [], pending = [], announcements = [], team = [];
+  var activeFilter = "all", curateFilter = "all";
+  var unsubs = [];
+
+  var els = {};
+  ["navTabs","adminTabBtn","pendingBadge","filters","grid","bestGrid","annCarousel","annDots",
+   "factWorks","factCats","factBest","openBtn","overlay","closeBtn","cancelBtn","postForm",
+   "submitBtn","formMsg","catSuggest","fCat","adminGate","adminArea","subPendingN",
+   "curateFilters","curateList","aTitle","aBody","aCat",
+   "annAddMsg","annAddBtn","annManageList","aImage","aImagePreview",
+   "cdDays","cdHours","cdMins","cdSecs",
+   "teamGrid","tName","tRole","tPhone","teamAddMsg","teamAddBtn","teamManageList",
+   "fFile","filePreview","adminEmail","adminPass","adminLoginBtn","adminLoginMsg","adminLogoutBtn"
+  ].forEach(function(id){ els[id] = document.getElementById(id); });
+
+  function esc(s){
+    return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function initials(name){ var t=(name||"").trim(); return t?t.charAt(0):"؟"; }
+  function timeAgo(iso){
+    if(!iso) return "";
+    var d=new Date(iso); if(isNaN(d)) return "";
+    var diff=(Date.now()-d.getTime())/1000;
+    if(diff<60) return "الآن";
+    if(diff<3600) return Math.floor(diff/60)+" د";
+    if(diff<86400) return Math.floor(diff/3600)+" س";
+    if(diff<2592000) return Math.floor(diff/86400)+" يوم";
+    return d.toLocaleDateString("ar-SA",{day:"numeric",month:"short"});
+  }
+
+  /* ---------- countdown to next Sep 23 ---------- */
+  function nextNationalDay(){
+    var now = new Date();
+    var y = now.getFullYear();
+    var target = new Date(y, 8, 23, 0, 0, 0);
+    if(target.getTime() <= now.getTime()) target = new Date(y+1, 8, 23, 0, 0, 0);
+    return target;
+  }
+  function tickCountdown(){
+    var diff = nextNationalDay().getTime() - Date.now();
+    if(diff < 0) diff = 0;
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor(diff%86400000/3600000);
+    var m = Math.floor(diff%3600000/60000);
+    var s = Math.floor(diff%60000/1000);
+    els.cdDays.textContent=d; els.cdHours.textContent=h; els.cdMins.textContent=m; els.cdSecs.textContent=s;
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  /* ---------- nav ---------- */
+  els.navTabs.addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-page]");
+    if(!btn) return;
+    Array.prototype.forEach.call(els.navTabs.querySelectorAll("button"), function(b){ b.classList.remove("active"); });
+    btn.classList.add("active");
+    document.querySelectorAll(".page").forEach(function(p){ p.classList.remove("active"); });
+    document.getElementById("page-"+btn.getAttribute("data-page")).classList.add("active");
+  });
+
+  document.querySelectorAll(".subtab").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".subtab").forEach(function(b){ b.classList.remove("active"); });
+      btn.classList.add("active");
+      document.querySelectorAll(".subpage").forEach(function(p){ p.classList.remove("active"); });
+      document.getElementById("sub-"+btn.getAttribute("data-sub")).classList.add("active");
+    });
+  });
+
+  /* ---------- media rendering ---------- */
+  function mediaHtml(p){
+    if(p.assetURL){
+      if(p.assetType==="video"){
+        return '<div class="media"><span class="badge">فيديو</span><video src="'+esc(p.assetURL)+'" controls preload="metadata"></video></div>';
+      }
+      return '<div class="media"><span class="badge">صورة</span><img src="'+esc(p.assetURL)+'" loading="lazy" alt="'+esc(p.title)+'"></div>';
+    }
+    return '<div class="media"><span class="badge">مرفق</span><div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 13a4 4 0 005.66 0l3-3a4 4 0 00-5.66-5.66l-1 1"/><path d="M14 11a4 4 0 00-5.66 0l-3 3a4 4 0 005.66 5.66l1-1"/></svg><span>لا يوجد ملف مرفق</span></div></div>';
+  }
+
+  function cardHtml(p){
+    return '<article class="card'+(p.featured?' featured':'')+'">'+
+      mediaHtml(p)+
+      (p.featured ? '<span class="star-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7-5.4-4.7 7.1-.6z"/></svg>الأفضل</span>' : '')+
+      '<div class="card-body">'+
+        '<div class="card-title">'+esc(p.title)+'</div>'+
+        '<div class="card-desc">'+esc(p.desc)+'</div>'+
+        '<div class="card-foot">'+
+          '<span class="student"><span class="av">'+esc(initials(p.name))+'</span>'+esc(p.name)+'</span>'+
+          '<span>'+esc(p.category)+' · '+timeAgo(p.createdAt)+'</span>'+
+        '</div>'+
+      '</div>'+
+    '</article>';
+  }
+
+  function categoriesFrom(list){
+    var map={};
+    list.forEach(function(p){ var c=(p.category||"").trim(); if(!c) return; map[c]=(map[c]||0)+1; });
+    return map;
+  }
+
+  /* ---------- works page render ---------- */
+  function renderWorks(){
+    var cats = categoriesFrom(posts);
+    var names = Object.keys(cats).sort(function(a,b){ return cats[b]-cats[a]; });
+    var chips = ['<button class="chip" data-cat="all" aria-pressed="'+(activeFilter==="all")+'">الكل <span class="n">'+posts.length+'</span></button>'];
+    names.forEach(function(c){
+      chips.push('<button class="chip" data-cat="'+esc(c)+'" aria-pressed="'+(activeFilter===c)+'">'+esc(c)+' <span class="n">'+cats[c]+'</span></button>');
+    });
+    els.filters.innerHTML = chips.join("");
+
+    var visible = activeFilter==="all" ? posts : posts.filter(function(p){ return p.category===activeFilter; });
+    if(visible.length===0){
+      els.grid.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16l4.5-6 3.5 4.5 2.5-3L20 16" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2.5"/></svg><h3>لا توجد أعمال منشورة بعد</h3><p>كن أول من يشارك عمله هنا</p></div>';
+    } else {
+      els.grid.innerHTML = visible.map(cardHtml).join("");
+    }
+
+    els.catSuggest.innerHTML = names.slice(0,8).map(function(c){
+      return '<button type="button" class="catpick" data-cat="'+esc(c)+'">'+esc(c)+'</button>';
+    }).join("");
+
+    var bestList = posts.filter(function(p){ return p.featured; });
+    els.bestGrid.innerHTML = bestList.length ? bestList.map(cardHtml).join("") :
+      '<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.6 5.9 6.4.5-4.8 4.2 1.5 6.3L12 16.8 6.3 19.9l1.5-6.3-4.8-4.2 6.4-.5z"/></svg><h3>لم يتم اختيار الأعمال المميزة بعد</h3><p>سيقوم فريق الإشراف باختيار أفضل الأعمال قريبًا</p></div>';
+
+    els.factWorks.textContent = posts.length;
+    els.factCats.textContent = names.length;
+    els.factBest.textContent = bestList.length;
+  }
+
+  els.filters.addEventListener("click", function(e){
+    var btn = e.target.closest(".chip"); if(!btn) return;
+    activeFilter = btn.getAttribute("data-cat"); renderWorks();
+  });
+  els.catSuggest.addEventListener("click", function(e){
+    var btn = e.target.closest(".catpick"); if(!btn) return;
+    els.fCat.value = btn.getAttribute("data-cat");
+  });
+
+  /* ---------- announcements carousel ---------- */
+  function renderAnnouncements(){
+    if(announcements.length===0){
+      els.annCarousel.innerHTML = '<div class="ann-card"><div class="ann-top"></div><div class="ann-body"><span class="cat">تنبيه</span><h3>لا توجد إعلانات حالياً</h3><p>سيتم نشر تفاصيل فعاليات اليوم الوطني هنا فور اعتمادها من فريق الإشراف.</p></div></div>';
+      els.annDots.innerHTML = "";
+      return;
+    }
+    els.annCarousel.innerHTML = announcements.map(function(a){
+      var img = a.imageURL ? '<img class="ann-img" src="'+esc(a.imageURL)+'" alt="'+esc(a.title)+'" loading="lazy">' : '<div class="ann-top"></div>';
+      return '<div class="ann-card">'+img+'<div class="ann-body">'+
+        '<span class="cat">'+esc(a.category||"إعلان")+'</span>'+
+        '<h3>'+esc(a.title)+'</h3><p>'+esc(a.body)+'</p></div></div>';
+    }).join("");
+    els.annDots.innerHTML = announcements.map(function(_,i){ return '<span class="'+(i===0?'on':'')+'"></span>'; }).join("");
+  }
+  els.annCarousel.addEventListener("scroll", function(){
+    var cards = els.annCarousel.querySelectorAll(".ann-card");
+    if(!cards.length) return;
+    var center = els.annCarousel.scrollLeft + els.annCarousel.clientWidth/2;
+    var closest = 0, best = Infinity;
+    cards.forEach(function(c, i){
+      var mid = c.offsetLeft + c.offsetWidth/2;
+      var d = Math.abs(mid-center);
+      if(d<best){ best=d; closest=i; }
+    });
+    els.annDots.querySelectorAll("span").forEach(function(dot,i){ dot.classList.toggle("on", i===closest); });
+  });
+
+  /* ---------- upload helper (Cloudinary free tier, no billing account needed) ---------- */
+  function uploadFile(file, folder){
+    if(!cloudinaryConfig.cloudName || cloudinaryConfig.cloudName.indexOf("ضع-")===0){
+      return Promise.reject(new Error("لم يتم إعداد بيانات Cloudinary بعد"));
+    }
+    var fd = new FormData();
+    fd.append("file", file);
+    fd.append("upload_preset", cloudinaryConfig.uploadPreset);
+    fd.append("folder", folder);
+    return fetch("https://api.cloudinary.com/v1_1/"+cloudinaryConfig.cloudName+"/auto/upload", {
+      method:"POST", body: fd
+    }).then(function(r){
+      if(!r.ok) throw new Error("upload_failed");
+      return r.json();
+    }).then(function(data){
+      if(!data || !data.secure_url) throw new Error("upload_failed");
+      return { url: data.secure_url, contentType: file.type };
+    });
+  }
+
+  /* ---------- submit new work ---------- */
+  function openSheet(){ els.formMsg.innerHTML=""; els.overlay.hidden=false; }
+  function closeSheet(){ els.overlay.hidden=true; }
+  els.openBtn.addEventListener("click", openSheet);
+  els.closeBtn.addEventListener("click", closeSheet);
+  els.cancelBtn.addEventListener("click", closeSheet);
+  els.overlay.addEventListener("click", function(e){ if(e.target===els.overlay) closeSheet(); });
+
+  els.fFile.addEventListener("change", function(){
+    var file = els.fFile.files && els.fFile.files[0];
+    if(!file){ els.filePreview.innerHTML=""; return; }
+    var url = URL.createObjectURL(file);
+    if(file.type.indexOf("video/")===0){
+      els.filePreview.innerHTML = '<video src="'+url+'" controls preload="metadata"></video>';
+    } else {
+      els.filePreview.innerHTML = '<img src="'+url+'" alt="معاينة">';
+    }
+  });
+
+  els.postForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name=document.getElementById("fName").value.trim();
+    var title=document.getElementById("fTitle").value.trim();
+    var desc=document.getElementById("fDesc").value.trim();
+    var category=els.fCat.value.trim();
+    var file = els.fFile.files && els.fFile.files[0];
+
+    if(!name||!title||!desc||!category){
+      els.formMsg.innerHTML='<div class="msg err">يرجى تعبئة جميع الحقول</div>'; return;
+    }
+    if(!file){
+      els.formMsg.innerHTML='<div class="msg err">يرجى إرفاق ملف الصورة أو الفيديو</div>'; return;
+    }
+    if(!auth.currentUser){
+      els.formMsg.innerHTML='<div class="msg err">تعذّر تجهيز حسابك، أعد تحميل الصفحة وحاول مرة أخرى</div>'; return;
+    }
+
+    els.submitBtn.disabled=true; els.submitBtn.textContent="جارٍ رفع الملف…";
+    var data={ name:name.slice(0,60), title:title.slice(0,80), desc:desc.slice(0,400), category:category.slice(0,30), createdAt:new Date().toISOString() };
+
+    function done(ok, msg){
+      els.submitBtn.disabled=false; els.submitBtn.textContent="إرسال للمراجعة";
+      if(ok){
+        els.formMsg.innerHTML='<div class="msg ok">وصلت مشاركتك! سيراجعها فريق الإشراف قريبًا 🎉</div>';
+        els.postForm.reset();
+        els.filePreview.innerHTML="";
+        setTimeout(closeSheet, 900);
+      } else {
+        els.formMsg.innerHTML='<div class="msg err">'+esc(msg||"تعذّر الإرسال، حاول مرة أخرى.")+'</div>';
+      }
+    }
+
+    uploadFile(file, "submissions").then(function(res){
+      data.assetURL = res.url;
+      data.assetType = res.contentType.indexOf("video/")===0 ? "video" : "image";
+      els.submitBtn.textContent="جارٍ الإرسال…";
+      db.collection("submissions").add(data)
+        .then(function(){ done(true); })
+        .catch(function(err){ done(false, "تعذّر الإرسال: "+(err&&err.message||"")); });
+    }).catch(function(err){
+      done(false, "تعذّر رفع الملف: "+(err&&err.message||""));
+    });
+  });
+
+  /* ---------- admin: pending review ---------- */
+  function renderPending(){
+    els.subPendingN.textContent = "("+pending.length+")";
+    els.pendingBadge.hidden = !isAdmin || pending.length===0;
+    els.pendingBadge.textContent = pending.length;
+    var target = document.getElementById("sub-pending");
+    if(pending.length===0){
+      target.innerHTML = '<div class="empty" style="padding:40px 0;"><h3>لا توجد أعمال بانتظار المراجعة</h3></div>';
+      return;
+    }
+    target.innerHTML = pending.map(function(p){
+      return '<div class="review-item" data-id="'+esc(p.id)+'">'+
+        '<div class="rh"><h4>'+esc(p.title)+'</h4><span class="meta">'+esc(p.name)+' · '+esc(p.category)+' · '+timeAgo(p.createdAt)+'</span></div>'+
+        '<p>'+esc(p.desc)+'</p>'+
+        '<div style="max-width:320px;margin-bottom:10px;">'+mediaHtml(p)+'</div>'+
+        '<div class="review-actions">'+
+          '<button class="btn primary sm act-approve" data-id="'+esc(p.id)+'">قبول ونشر</button>'+
+          '<button class="btn danger sm act-reject" data-id="'+esc(p.id)+'">رفض</button>'+
+        '</div></div>';
+    }).join("");
+  }
+
+  document.getElementById("sub-pending").addEventListener("click", function(e){
+    var appBtn = e.target.closest(".act-approve");
+    var rejBtn = e.target.closest(".act-reject");
+    if(!appBtn && !rejBtn) return;
+    var id = (appBtn||rejBtn).getAttribute("data-id");
+    var item = pending.find(function(p){ return p.id===id; });
+    if(!item) return;
+    if(appBtn){
+      var data={ name:item.name, title:item.title, desc:item.desc, assetURL:item.assetURL||null, assetType:item.assetType||null, category:item.category, createdAt:item.createdAt, featured:false };
+      db.collection("posts").doc(id).set(data).then(function(){
+        return db.collection("submissions").doc(id).delete();
+      }).catch(function(err){ console.log("approve error", err&&err.message); });
+    } else {
+      db.collection("submissions").doc(id).delete().catch(function(err){ console.log("reject error", err&&err.message); });
+    }
+  });
+
+  /* ---------- admin: curate best ---------- */
+  function renderCurate(){
+    var cats = categoriesFrom(posts);
+    var names = Object.keys(cats).sort(function(a,b){ return cats[b]-cats[a]; });
+    var chips = ['<button class="chip" data-cat="all" aria-pressed="'+(curateFilter==="all")+'">الكل <span class="n">'+posts.length+'</span></button>'];
+    names.forEach(function(c){ chips.push('<button class="chip" data-cat="'+esc(c)+'" aria-pressed="'+(curateFilter===c)+'">'+esc(c)+' <span class="n">'+cats[c]+'</span></button>'); });
+    els.curateFilters.innerHTML = chips.join("");
+
+    var list = curateFilter==="all" ? posts : posts.filter(function(p){ return p.category===curateFilter; });
+    if(list.length===0){
+      els.curateList.innerHTML = '<div class="empty" style="padding:40px 0;"><h3>لا توجد أعمال منشورة بعد</h3></div>';
+      return;
+    }
+    els.curateList.innerHTML = list.map(function(p){
+      return '<div class="manage-row">'+
+        '<div><div class="title">'+esc(p.title)+'</div><div class="sub">'+esc(p.name)+' · '+esc(p.category)+'</div></div>'+
+        '<button class="btn sm '+(p.featured?'danger':'gold')+' act-feature" data-id="'+esc(p.id)+'" data-on="'+(p.featured?'0':'1')+'">'+(p.featured?'إزالة من الأفضل':'إضافة للأفضل')+'</button>'+
+      '</div>';
+    }).join("");
+  }
+  els.curateFilters.addEventListener("click", function(e){
+    var btn=e.target.closest(".chip"); if(!btn) return;
+    curateFilter=btn.getAttribute("data-cat"); renderCurate();
+  });
+  els.curateList.addEventListener("click", function(e){
+    var btn=e.target.closest(".act-feature"); if(!btn) return;
+    var id=btn.getAttribute("data-id"); var on=btn.getAttribute("data-on")==="1";
+    db.collection("posts").doc(id).update({featured:on}).catch(function(err){ console.log("feature error", err&&err.message); });
+  });
+
+  /* ---------- admin: announcements manage ---------- */
+  function renderAnnManage(){
+    if(announcements.length===0){
+      els.annManageList.innerHTML = '<div class="empty" style="padding:30px 0;"><h3>لا توجد إعلانات بعد</h3></div>';
+      return;
+    }
+    els.annManageList.innerHTML = announcements.map(function(a){
+      return '<div class="manage-row">'+
+        '<div><div class="title">'+esc(a.title)+'</div><div class="sub">'+esc(a.category||"إعلان")+' · '+esc(a.body).slice(0,60)+'</div></div>'+
+        '<button class="btn danger sm act-del-ann" data-id="'+esc(a.id)+'">حذف</button>'+
+      '</div>';
+    }).join("");
+  }
+  els.annManageList.addEventListener("click", function(e){
+    var btn=e.target.closest(".act-del-ann"); if(!btn) return;
+    db.collection("announcements").doc(btn.getAttribute("data-id")).delete().catch(function(err){ console.log("del ann error", err&&err.message); });
+  });
+  els.aImage.addEventListener("change", function(){
+    var file = els.aImage.files && els.aImage.files[0];
+    if(!file){ els.aImagePreview.innerHTML=""; return; }
+    els.aImagePreview.innerHTML = '<img src="'+URL.createObjectURL(file)+'" alt="معاينة" style="margin-top:8px;max-height:160px;border-radius:8px;">';
+  });
+
+  els.annAddBtn.addEventListener("click", function(){
+    var title=els.aTitle.value.trim(), body=els.aBody.value.trim(), category=els.aCat.value.trim();
+    var file = els.aImage.files && els.aImage.files[0];
+    if(!title || !body){ els.annAddMsg.innerHTML='<div class="msg err">يرجى تعبئة العنوان والتفاصيل</div>'; return; }
+    els.annAddBtn.disabled = true;
+    els.annAddMsg.innerHTML = "";
+
+    var payload = { title:title.slice(0,60), body:body.slice(0,220), category:category.slice(0,24), createdAt:new Date().toISOString() };
+
+    function saveAnn(){
+      db.collection("announcements").add(payload)
+        .then(function(){
+          els.annAddMsg.innerHTML='<div class="msg ok">تم نشر الإعلان</div>';
+          els.aTitle.value=""; els.aBody.value=""; els.aCat.value=""; els.aImage.value=""; els.aImagePreview.innerHTML="";
+        }).catch(function(err){
+          els.annAddMsg.innerHTML='<div class="msg err">تعذّر النشر: '+esc(err&&err.message||"")+'</div>';
+        }).finally(function(){ els.annAddBtn.disabled=false; });
+    }
+
+    if(file){
+      uploadFile(file, "announcements").then(function(res){
+        payload.imageURL = res.url;
+        saveAnn();
+      }).catch(function(err){
+        els.annAddMsg.innerHTML='<div class="msg err">تعذّر رفع الصورة</div>';
+        els.annAddBtn.disabled=false;
+      });
+    } else {
+      saveAnn();
+    }
+  });
+
+  /* ---------- supervisor team ---------- */
+  function mergedTeam(){
+    var extra = team.filter(function(t){
+      return !BASE_TEAM.some(function(b){ return b.phone && t.phone && b.phone===t.phone; });
+    });
+    return BASE_TEAM.concat(extra);
+  }
+  function renderTeamPublic(){
+    var list = mergedTeam();
+    if(list.length===0){
+      els.teamGrid.innerHTML = '<div class="empty" style="padding:24px 0;"><h3>سيتم الإعلان عن فريق الإشراف قريبًا</h3></div>';
+      return;
+    }
+    els.teamGrid.innerHTML = list.map(function(t){
+      var phone = t.phone ? '<div class="role"><a href="tel:'+esc(t.phone)+'" style="text-decoration:underline;">'+esc(t.phone)+'</a></div>' : '';
+      return '<div class="team-card"><div class="av">'+esc(initials(t.name))+'</div>'+
+        '<div class="name">'+esc(t.name)+'</div><div class="role">'+esc(t.role||"مشرف")+'</div>'+phone+'</div>';
+    }).join("");
+  }
+  function renderTeamManage(){
+    var list = mergedTeam();
+    if(list.length===0){
+      els.teamManageList.innerHTML = '<div class="empty" style="padding:30px 0;"><h3>لم تتم إضافة أي مشرف بعد</h3></div>';
+      return;
+    }
+    els.teamManageList.innerHTML = list.map(function(t){
+      var delBtn = t.base ? '<span style="font-size:11px;color:var(--ink-faint);">عضو أساسي</span>' : '<button class="btn danger sm act-del-team" data-id="'+esc(t.id)+'">حذف</button>';
+      return '<div class="manage-row">'+
+        '<div><div class="title">'+esc(t.name)+'</div><div class="sub">'+esc(t.role||"مشرف")+(t.phone?' · '+esc(t.phone):'')+'</div></div>'+
+        delBtn+
+      '</div>';
+    }).join("");
+  }
+  els.teamManageList.addEventListener("click", function(e){
+    var btn=e.target.closest(".act-del-team"); if(!btn) return;
+    db.collection("supervisors").doc(btn.getAttribute("data-id")).delete().catch(function(err){ console.log("del team error", err&&err.message); });
+  });
+  els.teamAddBtn.addEventListener("click", function(){
+    var name=els.tName.value.trim(), role=els.tRole.value.trim(), phone=els.tPhone.value.trim();
+    if(!name){ els.teamAddMsg.innerHTML='<div class="msg err">يرجى إدخال الاسم</div>'; return; }
+    els.teamAddBtn.disabled = true;
+    db.collection("supervisors").add({ name:name.slice(0,50), role:role.slice(0,40), phone:phone.slice(0,20), createdAt:new Date().toISOString() })
+      .then(function(){
+        els.teamAddMsg.innerHTML='<div class="msg ok">تمت الإضافة للقائمة</div>';
+        els.tName.value=""; els.tRole.value=""; els.tPhone.value="";
+      }).catch(function(err){
+        els.teamAddMsg.innerHTML='<div class="msg err">تعذّرت الإضافة: '+esc(err&&err.message||"")+'</div>';
+      }).finally(function(){ els.teamAddBtn.disabled=false; });
+  });
+
+  /* ---------- admin login / logout ---------- */
+  els.adminLoginBtn.addEventListener("click", function(){
+    var email = els.adminEmail.value.trim();
+    var pass = els.adminPass.value;
+    if(!email || !pass){ els.adminLoginMsg.innerHTML='<div class="msg err">أدخل البريد وكلمة المرور</div>'; return; }
+    els.adminLoginBtn.disabled = true;
+    els.adminLoginMsg.innerHTML = "";
+    auth.signInWithEmailAndPassword(email, pass).catch(function(err){
+      els.adminLoginMsg.innerHTML='<div class="msg err">تعذّر الدخول: بيانات غير صحيحة</div>';
+      els.adminLoginBtn.disabled = false;
+    });
+  });
+  els.adminLogoutBtn.addEventListener("click", function(){
+    auth.signOut().then(function(){ auth.signInAnonymously(); });
+  });
+
+  /* ---------- live listeners ---------- */
+  function clearSubscriptions(){
+    unsubs.forEach(function(u){ try{ u(); }catch(e){} });
+    unsubs = [];
+  }
+
+  function subscribePublic(){
+    unsubs.push(db.collection("posts").orderBy("createdAt","desc").limit(500).onSnapshot(function(snap){
+      posts = snap.docs.map(function(d){ var v=d.data()||{}; return { id:d.id, name:v.name||"طالب", title:v.title||"", desc:v.desc||"", assetURL:v.assetURL||null, assetType:v.assetType||null, category:v.category||"عام", createdAt:v.createdAt||null, featured:!!v.featured }; });
+      renderWorks(); renderCurate();
+    }, function(err){ console.log("posts err", err&&err.message); }));
+
+    unsubs.push(db.collection("announcements").orderBy("createdAt","desc").limit(50).onSnapshot(function(snap){
+      announcements = snap.docs.map(function(d){ var v=d.data()||{}; return { id:d.id, title:v.title||"", body:v.body||"", category:v.category||"", imageURL:v.imageURL||null, createdAt:v.createdAt||null }; });
+      renderAnnouncements(); renderAnnManage();
+    }, function(err){ console.log("ann err", err&&err.message); }));
+
+    unsubs.push(db.collection("supervisors").orderBy("createdAt","asc").limit(100).onSnapshot(function(snap){
+      team = snap.docs.map(function(d){ var v=d.data()||{}; return { id:d.id, name:v.name||"", role:v.role||"", phone:v.phone||"" }; });
+      renderTeamPublic(); renderTeamManage();
+    }, function(err){ console.log("team err", err&&err.message); }));
+  }
+
+  function subscribeAdmin(){
+    unsubs.push(db.collection("submissions").orderBy("createdAt","desc").limit(200).onSnapshot(function(snap){
+      pending = snap.docs.map(function(d){
+        var v=d.data()||{};
+        return { id:d.id, name:v.name||"طالب", title:v.title||"", desc:v.desc||"", assetURL:v.assetURL||null, assetType:v.assetType||null, category:v.category||"عام", createdAt:v.createdAt||null };
+      });
+      renderPending();
+    }, function(err){ console.log("submissions err", err&&err.message); }));
+  }
+
+  renderWorks(); renderAnnouncements(); renderTeamPublic(); renderTeamManage();
+
+  /* ---------- auth wiring ---------- */
+  auth.onAuthStateChanged(function(user){
+    clearSubscriptions();
+    if(!user){
+      auth.signInAnonymously().catch(function(err){ console.log("anon sign-in failed", err&&err.message); });
+      return;
+    }
+    subscribePublic();
+    if(user.isAnonymous){
+      isAdmin = false;
+      els.adminGate.hidden = false;
+      els.adminArea.hidden = true;
+      els.adminLoginBtn.disabled = false;
+      renderPending();
+      return;
+    }
+    // signed-in, non-anonymous user: check admins/{uid}
+    db.collection("admins").doc(user.uid).get().then(function(doc){
+      isAdmin = doc.exists;
+      els.adminGate.hidden = isAdmin;
+      els.adminArea.hidden = !isAdmin;
+      if(isAdmin){
+        els.adminEmail.value = ""; els.adminPass.value = ""; els.adminLoginMsg.innerHTML = "";
+        subscribeAdmin();
+      } else {
+        els.adminLoginMsg.innerHTML = '<div class="msg err">هذا الحساب ليس من حسابات المشرفين</div>';
+        els.adminLoginBtn.disabled = false;
+        auth.signOut();
+      }
+    }).catch(function(err){
+      els.adminLoginMsg.innerHTML = '<div class="msg err">تعذّر التحقق من صلاحية الحساب</div>';
+      els.adminLoginBtn.disabled = false;
+      auth.signOut();
+    });
+  });
+})();
+</script>
+</body>
+</html>
