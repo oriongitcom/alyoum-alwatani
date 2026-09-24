@@ -389,7 +389,7 @@
         <h3>هذه اللوحة مخصصة للمشرفين</h3>
         <p>سجّل دخولك بحساب المشرف للوصول إلى لوحة المراجعة</p>
         <div id="adminLoginMsg"></div>
-        <div class="field"><label for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" type="email" autocomplete="username"></div>
+        <div class="field"><label for="adminEmail">رقم الجوال</label><input id="adminEmail" type="tel" inputmode="numeric" placeholder="مثال: 0561314989" autocomplete="username"></div>
         <div class="field"><label for="adminPass">كلمة المرور</label><input id="adminPass" type="password" autocomplete="current-password"></div>
         <button class="btn primary" id="adminLoginBtn" style="max-width:320px;width:100%;margin:4px auto 0;display:block;">دخول</button>
       </div>
@@ -439,7 +439,12 @@
               <div class="field"><label for="tName">الاسم</label><input id="tName" maxlength="50" placeholder="مثال: أ. نورة القحطاني"></div>
               <div class="field"><label for="tRole">الدور</label><input id="tRole" maxlength="40" placeholder="مثال: مشرفة النشاط الطلابي"></div>
             </div>
-            <div class="field"><label for="tPhone">رقم التواصل (اختياري)</label><input id="tPhone" maxlength="20" placeholder="مثال: 0561314989"></div>
+            <div class="field"><label for="tPhone">رقم الجوال</label><input id="tPhone" maxlength="20" placeholder="مثال: 0561314989"></div>
+            <div class="field">
+              <label for="tPass">كلمة مرور الدخول (اختياري)</label>
+              <input id="tPass" type="password" maxlength="40" placeholder="اتركه فارغًا لإضافته كاسم فقط بدون صلاحية دخول">
+              <div class="hint">إذا حطيت كلمة مرور هنا، يصير عنده صلاحية دخول فورية للوحة المراجعة برقم جواله وهذي الكلمة.</div>
+            </div>
             <div id="teamAddMsg"></div>
             <button class="btn primary block" id="teamAddBtn">إضافة للفريق</button>
           </div>
@@ -535,6 +540,11 @@ var cloudinaryConfig = {
   var auth = firebase.auth();
   var db = firebase.firestore();
 
+  // تطبيق ثانوي منفصل، يُستخدم فقط لإنشاء حسابات المشرفين الجدد
+  // بدون ما يسجّل خروج المشرف الحالي (قيود Firebase Auth على الويب)
+  var secondaryApp = firebase.initializeApp(firebaseConfig, "Secondary");
+  var secondaryAuth = secondaryApp.auth();
+
   var isAdmin = false;
   var posts = [], pending = [], announcements = [], team = [];
   var activeFilter = "all", curateFilter = "all";
@@ -547,7 +557,7 @@ var cloudinaryConfig = {
    "curateFilters","curateList","aTitle","aBody","aCat",
    "annAddMsg","annAddBtn","annManageList","aImage","aImagePreview",
    "cdDays","cdHours","cdMins","cdSecs",
-   "teamGrid","tName","tRole","tPhone","teamAddMsg","teamAddBtn","teamManageList",
+   "teamGrid","tName","tRole","tPhone","tPass","teamAddMsg","teamAddBtn","teamManageList",
    "fFile","filePreview","adminEmail","adminPass","adminLoginBtn","adminLoginMsg","adminLogoutBtn"
   ].forEach(function(id){ els[id] = document.getElementById(id); });
 
@@ -557,6 +567,11 @@ var cloudinaryConfig = {
     });
   }
   function initials(name){ var t=(name||"").trim(); return t?t.charAt(0):"؟"; }
+  var ADMIN_EMAIL_DOMAIN = "@alyoum-admin.local"; // نحوّل رقم الجوال لصيغة إيميل وهمية ثابتة يفهمها Firebase Auth
+  function phoneToPseudoEmail(phone){
+    var digits = phone.replace(/[^0-9]/g,"");
+    return digits + ADMIN_EMAIL_DOMAIN;
+  }
   function timeAgo(iso){
     if(!iso) return "";
     var d=new Date(iso); if(isNaN(d)) return "";
@@ -952,26 +967,52 @@ var cloudinaryConfig = {
     db.collection("supervisors").doc(btn.getAttribute("data-id")).delete().catch(function(err){ console.log("del team error", err&&err.message); });
   });
   els.teamAddBtn.addEventListener("click", function(){
-    var name=els.tName.value.trim(), role=els.tRole.value.trim(), phone=els.tPhone.value.trim();
+    var name=els.tName.value.trim(), role=els.tRole.value.trim(), phone=els.tPhone.value.trim(), pass=els.tPass.value;
     if(!name){ els.teamAddMsg.innerHTML='<div class="msg err">يرجى إدخال الاسم</div>'; return; }
+    if(pass && !phone){ els.teamAddMsg.innerHTML='<div class="msg err">يرجى إدخال رقم الجوال لمنحه صلاحية الدخول</div>'; return; }
+    if(pass && pass.length<6){ els.teamAddMsg.innerHTML='<div class="msg err">كلمة المرور لازم تكون 6 أحرف على الأقل</div>'; return; }
     els.teamAddBtn.disabled = true;
-    db.collection("supervisors").add({ name:name.slice(0,50), role:role.slice(0,40), phone:phone.slice(0,20), createdAt:new Date().toISOString() })
-      .then(function(){
-        els.teamAddMsg.innerHTML='<div class="msg ok">تمت الإضافة للقائمة</div>';
-        els.tName.value=""; els.tRole.value=""; els.tPhone.value="";
-      }).catch(function(err){
-        els.teamAddMsg.innerHTML='<div class="msg err">تعذّرت الإضافة: '+esc(err&&err.message||"")+'</div>';
-      }).finally(function(){ els.teamAddBtn.disabled=false; });
+    els.teamAddMsg.innerHTML = "";
+
+    function saveSupervisorDoc(){
+      db.collection("supervisors").add({ name:name.slice(0,50), role:role.slice(0,40), phone:phone.slice(0,20), createdAt:new Date().toISOString() })
+        .then(function(){
+          els.teamAddMsg.innerHTML='<div class="msg ok">'+(pass ? 'تمت الإضافة، وصار عنده صلاحية دخول للوحة المراجعة 🎉' : 'تمت الإضافة للقائمة')+'</div>';
+          els.tName.value=""; els.tRole.value=""; els.tPhone.value=""; els.tPass.value="";
+        }).catch(function(err){
+          els.teamAddMsg.innerHTML='<div class="msg err">تعذّرت الإضافة: '+esc(err&&err.message||"")+'</div>';
+        }).finally(function(){ els.teamAddBtn.disabled=false; });
+    }
+
+    if(!pass){
+      saveSupervisorDoc();
+      return;
+    }
+
+    // ننشئ حساب الدخول عبر تطبيق ثانوي منفصل حتى ما يسجّل خروج المشرف الحالي
+    secondaryAuth.createUserWithEmailAndPassword(phoneToPseudoEmail(phone), pass).then(function(cred){
+      var newUid = cred.user.uid;
+      return secondaryAuth.signOut().then(function(){
+        return db.collection("admins").doc(newUid).set({ role:"admin", phone:phone.slice(0,20), name:name.slice(0,50), createdAt:new Date().toISOString() });
+      });
+    }).then(function(){
+      saveSupervisorDoc();
+    }).catch(function(err){
+      var msg = "تعذّر إنشاء صلاحية الدخول";
+      if(err && err.code==="auth/email-already-in-use") msg = "هذا الرقم عنده صلاحية دخول مسجّلة مسبقًا";
+      els.teamAddMsg.innerHTML='<div class="msg err">'+esc(msg)+'</div>';
+      els.teamAddBtn.disabled=false;
+    });
   });
 
   /* ---------- admin login / logout ---------- */
   els.adminLoginBtn.addEventListener("click", function(){
-    var email = els.adminEmail.value.trim();
+    var phone = els.adminEmail.value.trim();
     var pass = els.adminPass.value;
-    if(!email || !pass){ els.adminLoginMsg.innerHTML='<div class="msg err">أدخل البريد وكلمة المرور</div>'; return; }
+    if(!phone || !pass){ els.adminLoginMsg.innerHTML='<div class="msg err">أدخل رقم الجوال وكلمة المرور</div>'; return; }
     els.adminLoginBtn.disabled = true;
     els.adminLoginMsg.innerHTML = "";
-    auth.signInWithEmailAndPassword(email, pass).catch(function(err){
+    auth.signInWithEmailAndPassword(phoneToPseudoEmail(phone), pass).catch(function(err){
       els.adminLoginMsg.innerHTML='<div class="msg err">تعذّر الدخول: بيانات غير صحيحة</div>';
       els.adminLoginBtn.disabled = false;
     });
