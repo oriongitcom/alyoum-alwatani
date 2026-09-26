@@ -477,7 +477,7 @@
       <div class="field">
         <label for="fFile">ملف العمل (صورة أو فيديو)</label>
         <input id="fFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm">
-        <div class="hint">أرفق الملف مباشرة من جهازك — صورة (jpg, png, webp, gif) أو فيديو (mp4, webm)، بحجم أقصى 20 ميجابايت</div>
+        <div class="hint">أرفق الملف مباشرة من جهازك — صورة (jpg, png, webp, gif) أو فيديو (mp4, webm)، بحجم أقصى 100 ميجابايت</div>
         <div id="filePreview"></div>
       </div>
       <div class="field">
@@ -733,11 +733,13 @@ var cloudinaryConfig = {
     return fetch("https://api.cloudinary.com/v1_1/"+cloudinaryConfig.cloudName+"/auto/upload", {
       method:"POST", body: fd
     }).then(function(r){
-      if(!r.ok) throw new Error("upload_failed");
-      return r.json();
-    }).then(function(data){
-      if(!data || !data.secure_url) throw new Error("upload_failed");
-      return { url: data.secure_url, contentType: file.type };
+      return r.json().catch(function(){ return {}; }).then(function(data){ return { ok:r.ok, data:data }; });
+    }).then(function(res){
+      if(!res.ok || !res.data || !res.data.secure_url){
+        var msg = (res.data && res.data.error && res.data.error.message) || "فشل الرفع (تأكد من إعدادات Cloudinary)";
+        throw new Error(msg);
+      }
+      return { url: res.data.secure_url, contentType: file.type };
     });
   }
 
