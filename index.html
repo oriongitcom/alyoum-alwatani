@@ -1084,8 +1084,8 @@ var cloudinaryConfig = {
     // signed-in, non-anonymous user: check admins/{uid}
     db.collection("admins").doc(user.uid).get().then(function(doc){
       isAdmin = doc.exists;
-      els.adminGate.hidden = isAdmin;
-      els.adminArea.hidden = !isAdmin;
+      els.adminGate.hidden = true;
+      els.adminArea.hidden = false;
       if(isAdmin){
         els.adminEmail.value = ""; els.adminPass.value = ""; els.adminLoginMsg.innerHTML = "";
         subscribeAdmin();
